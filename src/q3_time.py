@@ -47,3 +47,19 @@ def q3_time(file_path: str) -> List[Tuple[str, int]]:
     top_10_users = user_counter.most_common(10)
 
     return top_10_users
+
+
+if __name__ == "__main__":
+
+    import os
+    import sys
+
+    # Check if the script received the required argument
+    if len(sys.argv) < 2:
+        print("Usage: python q3_time.py <file_name>")
+        sys.exit(1)
+
+    # Solicitar el nombre del archivo, que debe estar dentro de data
+    ruta = sys.argv[1]
+    file_path = os.path.join(os.path.dirname(__file__), "data", ruta)
+    print(q3_time(file_path))
