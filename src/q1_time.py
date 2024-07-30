@@ -12,10 +12,20 @@ def read_json_q1_memory(file_path: str):
     :return: Generador de listas con los datos de las columnas especificadas.
     """
 
+    # Abrimos el archivo y leemos línea por línea
     with open(file_path, "r") as f:
-        for linea in f:
-            tweet = orjson.loads(linea)
-            yield [tweet.get("user", {}).get("username"), tweet.get("date").split("T")[0]]
+        for line in f:
+            try:
+                # Cargar la línea como un diccionario
+                tweet = orjson.loads(line)
+
+                # El generador retorna el usuario y la fecha del tweet
+                yield [tweet.get("user", {}).get("username"), tweet.get("date").split("T")[0]]
+
+            except Exception as e:
+                # En caso de que alguna fila no se pueda parsear, se imprime un mensaje de error
+                print(f"Error while reading a JSON line: {e}. Line: {line}")
+                continue
 
 def q1_time(file_path: str) -> List[Tuple[date, str]]:
 
