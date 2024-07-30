@@ -63,4 +63,17 @@ def q2_memory(file_path: str) -> List[Tuple[str, int]]:
 
 
 if __name__ == "__main__":
-    print(q2_memory(file_path="../data/farmers-protest-tweets-2021-2-4.json"))
+
+    # Solicitar el nombre del archivo, que debe estar dentro de data
+    import os
+    import sys
+
+    # Revisar si el script recibió el argumento requerido
+    if len(sys.argv) < 2:
+        print("Usage: python q2_memory.py <file_name>")
+        sys.exit(1)
+
+    # Solicitar el nombre del archivo, que debe estar dentro de data
+    ruta = sys.argv[1]
+    file_path = os.path.join(os.path.dirname(__file__), "data", ruta)
+    print(q2_memory(file_path))
