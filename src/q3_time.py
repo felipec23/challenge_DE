@@ -1,6 +1,7 @@
 from typing import List, Tuple
-import orjson 
+import orjson
 from collections import Counter
+
 
 def read_json_q3_time(file_path: str):
     """
@@ -10,18 +11,21 @@ def read_json_q3_time(file_path: str):
     :return: Generador de strings con el content de los tweets.
     """
     # Se abre en binario para orjson
-    with open(file_path, "rb") as f:  
+    with open(file_path, "rb") as f:
         for linea in f:
             try:
                 tweet = orjson.loads(linea)
                 mentioned_users = tweet.get("mentionedUsers")
                 if mentioned_users:
-                    mentioned_users_list = [user.get("username") for user in mentioned_users]
+                    mentioned_users_list = [
+                        user.get("username") for user in mentioned_users
+                    ]
                     yield mentioned_users_list
 
             except Exception as e:
                 print(f"Error al leer una línea JSON: {e}. Línea: {linea}")
                 continue
+
 
 def q3_time(file_path: str) -> List[Tuple[str, int]]:
 

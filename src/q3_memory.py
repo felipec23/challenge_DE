@@ -1,7 +1,8 @@
 from typing import List, Tuple
-import orjson 
+import orjson
 from collections import Counter
 from memory_profiler import profile
+
 
 def read_json_q3_memory(file_path: str):
     """
@@ -11,7 +12,7 @@ def read_json_q3_memory(file_path: str):
     :return: Generador de strings con el content de los tweets.
     """
     # Se abre en binario para orjson
-    with open(file_path, "rb") as f:  
+    with open(file_path, "rb") as f:
         for linea in f:
             try:
                 mentioned_users = orjson.loads(linea).get("mentionedUsers")
@@ -21,6 +22,7 @@ def read_json_q3_memory(file_path: str):
             except Exception as e:
                 print(f"Error al leer una línea JSON: {e}. Línea: {linea}")
                 continue
+
 
 @profile
 def q3_memory(file_path: str) -> List[Tuple[str, int]]:
@@ -41,6 +43,7 @@ def q3_memory(file_path: str) -> List[Tuple[str, int]]:
 
     # Se obtienen los 10 usuarios más mencionados
     return user_counter.most_common(10)
+
 
 if __name__ == "__main__":
     q3_memory(file_path="../data/farmers-protest-tweets-2021-2-4.json")

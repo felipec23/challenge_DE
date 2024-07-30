@@ -6,8 +6,9 @@ from collections import Counter
 
 # Compile emoji pattern once
 emoji_pattern = emoji_pattern = re.compile(
-    r'[\p{Emoji_Presentation}\p{Extended_Pictographic}]'
+    r"[\p{Emoji_Presentation}\p{Extended_Pictographic}]"
 )
+
 
 def read_json_q2_time(file_path: str):
     """
@@ -17,7 +18,7 @@ def read_json_q2_time(file_path: str):
     :return: Generador de strings con el content de los tweets.
     """
     # Se abre en binario para orjson
-    with open(file_path, "rb") as f:  
+    with open(file_path, "rb") as f:
         for linea in f:
             try:
                 tweet = orjson.loads(linea)
@@ -26,6 +27,7 @@ def read_json_q2_time(file_path: str):
             except Exception as e:
                 print(f"Error al leer una línea JSON: {e}. Línea: {linea}")
                 continue
+
 
 def get_emojis_from_tweet(tweet: str) -> List[str]:
 
@@ -36,6 +38,7 @@ def get_emojis_from_tweet(tweet: str) -> List[str]:
     :return: Lista de emojis en el tweet.
     """
     return emoji_pattern.findall(tweet)
+
 
 def q2_time(file_path: str) -> List[Tuple[str, int]]:
 
@@ -58,6 +61,7 @@ def q2_time(file_path: str) -> List[Tuple[str, int]]:
     top_10_emojis = emoji_counter.most_common(10)
 
     return top_10_emojis
+
 
 if __name__ == "__main__":
     print(q2_time(file_path="../data/farmers-protest-tweets-2021-2-4.json"))
