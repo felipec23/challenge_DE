@@ -44,4 +44,4 @@ def q1_time(file_path: str) -> List[Tuple[date, str]]:
 
 
 if __name__ == "__main__":
-    print(q1_time("../data/farmers-protest-tweets-2021-2-4.json"))
+    print(q1_time(file_path="../data/farmers-protest-tweets-2021-2-4.json"))
