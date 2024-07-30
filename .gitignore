@@ -1,0 +1,7 @@
+src/data/*
+env/*
+*.pyc
+*.bin
+*.log
+*.dat
+.vscode/settings.json

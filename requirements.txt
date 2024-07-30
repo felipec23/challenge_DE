@@ -1,0 +1,5 @@
+memory-profiler==0.61.0
+py-spy==0.3.14
+orjson==3.10.6
+regex==2024.7.24
+pytest==8.3.2
