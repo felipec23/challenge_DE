@@ -3,7 +3,7 @@ from datetime import datetime, date
 from collections import defaultdict, Counter
 import orjson
 
-def read_json_q1_memory(file_path: str):
+def read_json_q1_time(file_path: str):
 
     """
     Función que lee un archivo json y retorna los datos de las columnas especificadas.
@@ -40,7 +40,7 @@ def q1_time(file_path: str) -> List[Tuple[date, str]]:
     date_user_counter = defaultdict(Counter)
 
     # Leer el archivo JSON y contar los tweets por usuario y fecha
-    for user, date_str in read_json_q1_memory(file_path):
+    for user, date_str in read_json_q1_time(file_path):
         date = datetime.fromisoformat(date_str).date()
         date_user_counter[date][user] += 1
 
