@@ -7,8 +7,9 @@ from memory_profiler import profile
 
 # Compile emoji pattern once
 emoji_pattern = emoji_pattern = re.compile(
-    r'[\p{Emoji_Presentation}\p{Extended_Pictographic}]'
+    r"[\p{Emoji_Presentation}\p{Extended_Pictographic}]"
 )
+
 
 def read_json_q2_memory(file_path: str):
     """
@@ -18,14 +19,16 @@ def read_json_q2_memory(file_path: str):
     :return: Generador de strings con el content de los tweets.
     """
     # Se abre en binario para orjson
-    with open(file_path, "rb") as f:  
+    with open(file_path, "rb") as f:
         for linea in f:
             try:
+                # Se devuelve el contenido a través de un generador
                 yield json.loads(linea).get("content")
 
             except Exception as e:
                 print(f"Error al leer una línea JSON: {e}. Línea: {linea}")
                 continue
+
 
 def get_emojis_from_tweet(tweet: str) -> List[str]:
 
@@ -36,6 +39,7 @@ def get_emojis_from_tweet(tweet: str) -> List[str]:
     :return: Lista de emojis en el tweet.
     """
     return emoji_pattern.findall(tweet)
+
 
 @profile
 def q2_memory(file_path: str) -> List[Tuple[str, int]]:
@@ -56,6 +60,7 @@ def q2_memory(file_path: str) -> List[Tuple[str, int]]:
 
     # Se obtienen los 10 emojis más usados
     return emoji_counter.most_common(10)
+
 
 if __name__ == "__main__":
     print(q2_memory(file_path="../data/farmers-protest-tweets-2021-2-4.json"))
